@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.jk.mapper.Mmapper" >
+  
+  
+   <select id="query" resultType="usermodel">
+      select * from user
+   </select>
+
+   <insert id="addBook" parameterType="java.util.List">
+      INSERT INTO user(Name,age,sex) VALUES
+      <foreach collection="list" item="l" separator=","  >
+         ( #{l.name},#{l.age},#{l.sex})
+
+      </foreach>
+
+   </insert>
+
+
+</mapper>
