@@ -1,0 +1,27 @@
+KindEditor.ready(function(K) {
+		
+			/* textarea[name="textValue"]  name的属性名 必须和 上面文本域的name 属性名保持一致 */
+			 editor1 = K.create('textarea[name="bookshow"]', {
+				//指定编辑器iframe document的CSS文件，用于设置可视化区域的样式。 
+				cssPath : 'kindeditor/plugins/code/prettify.css',
+				//指定上传文件的服务器端程序
+				uploadJson : 'kindeditor/jsp/upload_json.jsp',
+				//指定浏览远程图片的服务器端程序
+				fileManagerJson : 'kindeditor/jsp/file_manager_json.jsp',
+				//	true时显示浏览远程服务器按钮。
+				allowFileManager : true,
+				//设置编辑器创建后执行的回调函数
+				afterCreate : function() {
+					var self = this;
+					K.ctrl(document, 13, function() {
+						self.sync();
+						document.forms['example'].submit();
+					});
+					K.ctrl(self.edit.doc, 13, function() {
+						self.sync();
+						document.forms['example'].submit();
+					});
+				}
+			});
+			
+		});   

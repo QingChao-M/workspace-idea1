@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"/>
+    <title>Title</title>
+    <script type="text/javascript" src="../js/jquery.min.js"></script>
+</head>
+<body>
+
+<input type="button" value="导出Excel" onclick="exportExcel()">
+
+<form action="./importExcel" method="post" enctype="multipart/form-data" >
+    <input type="file" name="file"/>
+    <input type="submit" value="导入excel"/>
+</form>
+<table border="1">
+    <tr>
+        <td ><input type="checkbox"></td>
+        <td>id</td>
+        <td>name</td>
+        <td>age</td>
+        <td>sex</td>
+
+    </tr>
+    <tr th:each="book:${list}">
+        <td ><input type="checkbox" name="c"></td>
+        <td th:text="${book.id}">id</td>
+        <td th:text="${book.username}">name</td>
+        <td th:text="${book.userpass}">age</td>
+
+
+    </tr>
+</table>
+<script>
+    function exportExcel() {
+        var a="";
+        $("[name='ch']checked").each(function(){
+            a+=","+$(this).val();
+        })
+        alert(a)
+        // location.href="../exportExcel"+a;
+    }
+
+</script>
+</body>
+</html>

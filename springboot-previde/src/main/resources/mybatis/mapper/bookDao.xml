@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.jk.dao.bookDao" >
+  
+  
+   <select id="query"   resultType="user">
+      select * from usermodel limit #{start},#{rows}
+   </select>
+
+<select id="getRoleByUserId" resultType="Integer" parameterType="Integer">
+
+   select jid from u_j where uid=#{id}
+</select>
+<select id="queryRole" resultType="RoleModel" >
+   select *  from  js
+</select>
+
+<select id="zong" resultType="int">
+   select count(1) from usermodel
+</select>
+
+   <delete id="shanuj" parameterType="Integer">
+      delete from u_j where uid=#{uidTwo}
+   </delete>
+
+  <insert id="insert" parameterType="UserRoleModel">
+insert into u_j (uid,jid) values(#{uid},#{jid})
+</insert>
+
+
+<select id="login" resultType="user" parameterType="user">
+
+   select * from usermodel where username=#{username} and userpass=#{userpass}
+
+</select>
+
+<select id="gettree" resultType="PermissionModel" parameterType="Integer">
+  select t.* from usermodel u,u_j uj,js j,treee t,jq qq where
+u.id=uj.uid and
+uj.jid=j.id and
+t.id=qq.qid and
+qq.jid=j.id and
+
+u.id=#{id}
+GROUP BY t.text
+
+</select>
+
+<select id="gettreeid" resultType="String" parameterType="Integer" >
+   select qid from jq where jid=#{id}
+   </select>
+
+<select id="gettreeall" resultType="PermissionModel">
+   select * from treee
+</select>
+
+   <delete id="deljt" parameterType="Integer">
+      delete from jq where jid=#{reloid}
+   </delete>
+<insert id="insertjt" parameterType="jt">
+   insert into jq (jid,qid)values(#{jid},#{qid})
+</insert>
+
+   <select id="zong2" resultType="int">
+
+      select count(1) from js
+   </select>
+
+   <select id="queryje" resultType="RoleModel" parameterType="Integer">
+      select  *   from js limit #{start},#{rows}
+   </select>
+
+
+<select id="quer" resultType="user">
+   select * from usermodel
+
+</select>
+
+   <insert id="addBook" parameterType="java.util.List">
+      INSERT INTO user(username,userpass) VALUES
+      <foreach collection="list" item="l" separator=","  >
+         ( #{l.username},#{l.userpass})
+
+      </foreach>
+
+   </insert>
+
+</mapper>

@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="../js/jquery-1.8.0.js"></script>
+</head>
+<body>
+<form id="formId">
+
+    用户名:  <input type="text" name="username" /> <br/>
+    密码:   <input type="text" name="userpass"  /><br/>
+    <input type="button" onclick="loginUser()" value="登录" />
+</form>
+
+
+
+</body>
+<script type="text/javascript">
+    function loginUser(){
+
+        var objData = $("#formId").serialize();
+
+
+        $.ajax({
+            url:"../user/login",
+            data:objData,
+            type:"post",
+            success:function(data){
+                //登录成功
+                if(data=='success'){
+                    location.href="../user/s1";
+                }
+               else if(data=='null'){
+                    alert("请输入正确的账号密码");
+                }
+               else if(data=='passerror'){
+                    alert("密码错误");
+                }
+
+                else{
+
+                    alert("登录失败！！！");
+
+                }
+
+            },error:function(){
+                alert("大大大大事不好了！！！后台在闹革命")
+            }
+        })
+    }
+</script>
+
+</html>

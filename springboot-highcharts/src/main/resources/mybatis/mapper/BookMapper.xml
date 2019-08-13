@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.jk.dao.ddao" >
+  
+  
+   <select id="querybook" resultType="java.util.LinkedHashMap">
+     select count(*) 总个数,DATE_FORMAT(time,'%c') 时间 from book GROUP BY DATE_FORMAT(time,'%c')
+   </select>
+
+    <select id="querybook2" resultType="java.util.LinkedHashMap">
+     select count(*) 总个数,DATE_FORMAT(time,'%c') 时间 from book GROUP BY DATE_FORMAT(time,'%c')
+   </select>
+
+ 
+</mapper>
